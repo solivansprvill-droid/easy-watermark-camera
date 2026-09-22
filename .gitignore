@@ -1,0 +1,24 @@
+# 构建链与产物（体积大且含第三方授权，不入库）
+toolchain/
+*.zip
+
+# 构建中间产物
+gen/
+classes/
+dexout/
+compiled.zip
+app-unsigned.apk
+app-aligned.apk
+classlist.txt
+
+# 密钥与敏感文件
+*.keystore
+*.jks
+.env
+.env.*
+
+# IDE / 系统文件
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
