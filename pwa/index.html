@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="水印相机 - 自动叠加时间与定位水印的拍照应用">
+<title>水印相机</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main id="app">
+
+  <!-- 启动页 -->
+  <section id="screen-start" class="screen active">
+    <div class="start-hero">
+      <div class="logo-ring">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <h1>水印相机</h1>
+      <p class="subtitle">拍照自动叠加 · 时间 / 定位水印</p>
+    </div>
+    <div class="start-actions">
+      <button id="btn-start" class="btn btn-primary btn-block">打开相机</button>
+      <button id="btn-pick" class="btn btn-ghost btn-block">从相册选择照片</button>
+      <label id="loc-status" class="loc-status">定位未开启</label>
+    </div>
+    <footer class="start-tips">
+      <p>建议使用 Chrome / Edge 等现代浏览器</p>
+      <p>通过浏览器菜单「添加到主屏幕」可像 APP 一样使用</p>
+    </footer>
+  </section>
+
+  <!-- 相机页 -->
+  <section id="screen-camera" class="screen">
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas" hidden></canvas>
+
+    <header class="camera-top">
+      <button id="btn-close" class="icon-btn" aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="chip-loc" class="chip">📍 定位中…</div>
+      <button id="btn-switch" class="icon-btn" aria-label="切换摄像头">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v3M9 20H6a2 2 0 0 1-2-2v-3M15 20h3a2 2 0 0 0 2-2v-3M9 4H6a2 2 0 0 0-2 2v3"/><circle cx="12" cy="12" r="3.5"/></svg>
+      </button>
+    </header>
+
+    <!-- 实时水印预览（取景器内） -->
+    <div id="wm-preview" class="wm-preview">
+      <div class="wm-line wm-date">—</div>
+      <div class="wm-line wm-time">--:--:--</div>
+      <div class="wm-line wm-addr">正在获取定位…</div>
+    </div>
+
+    <footer class="camera-bottom">
+      <input type="file" id="file-input" accept="image/*" capture="environment" hidden>
+      <button id="btn-album" class="icon-btn small" aria-label="相册">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      </button>
+      <button id="btn-shutter" class="shutter" aria-label="拍摄"></button>
+      <div class="icon-btn small spacer"></div>
+    </footer>
+  </section>
+
+  <!-- 结果页 -->
+  <section id="screen-result" class="screen">
+    <header class="camera-top">
+      <button id="btn-back" class="icon-btn" aria-label="返回拍摄">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span class="chip ok">✔ 已合成水印</span>
+      <div style="width:38px"></div>
+    </header>
+    <div class="result-wrap"><img id="result-img" alt="水印照片预览"></div>
+    <footer class="camera-bottom">
+      <button id="btn-retake" class="btn btn-ghost">重拍</button>
+      <button id="btn-save" class="btn btn-primary">保存照片</button>
+    </footer>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" hidden></div>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
