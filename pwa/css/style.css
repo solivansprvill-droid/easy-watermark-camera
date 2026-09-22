@@ -1,0 +1,164 @@
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #f0f6fc;
+  --text-dim: #8b949e;
+  --accent: #2f81f7;
+  --ok: #3fb950;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  overscroll-behavior: none;
+}
+
+#app { height: 100dvh; max-width: 480px; margin: 0 auto; position: relative; overflow: hidden; }
+
+.screen {
+  position: absolute; inset: 0;
+  display: none; flex-direction: column;
+  background: var(--bg);
+}
+.screen.active { display: flex; }
+
+/* ---------- 启动页 ---------- */
+#screen-start { justify-content: center; padding: 32px 24px; }
+
+.start-hero { text-align: center; margin-bottom: 48px; }
+
+.logo-ring {
+  width: 112px; height: 112px; margin: 0 auto 20px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--accent), #1a5fb4);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 32px rgba(47, 129, 247, .35);
+}
+
+.start-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: 2px; }
+.subtitle { margin-top: 8px; color: var(--text-dim); font-size: 14px; }
+
+.start-actions { display: flex; flex-direction: column; gap: 12px; }
+
+.loc-status {
+  text-align: center; font-size: 12px; color: var(--text-dim); margin-top: 4px;
+}
+.loc-status.on { color: var(--ok); }
+
+.start-tips {
+  position: absolute; bottom: calc(20px + env(safe-area-inset-bottom));
+  left: 0; right: 0; text-align: center;
+  font-size: 11px; color: var(--text-dim); line-height: 1.8;
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  border: none; border-radius: var(--radius);
+  padding: 14px 20px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: opacity .15s, transform .1s;
+}
+.btn:active { transform: scale(.97); opacity: .85; }
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-ghost {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-block { width: 100%; }
+
+/* ---------- 相机页 / 结果页通用 ---------- */
+#video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; background: #000;
+}
+
+.camera-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+  z-index: 10;
+}
+
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: rgba(0,0,0,.45); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; backdrop-filter: blur(6px);
+  flex-shrink: 0;
+}
+.icon-btn:active { background: rgba(0,0,0,.7); }
+.icon-btn.small { width: 44px; height: 44px; }
+
+.chip {
+  font-size: 12px; padding: 6px 12px; border-radius: 999px;
+  background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+  color: #fff; max-width: 60%;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.chip.ok { background: rgba(63,185,80,.85); }
+
+/* ---------- 水印预览（马克风格） ---------- */
+.wm-preview {
+  position: absolute; left: 16px; bottom: 120px;
+  z-index: 5; pointer-events: none;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  max-width: calc(100% - 32px);
+}
+.wm-line { line-height: 1.5; }
+.wm-date { font-size: 13px; opacity: .92; }
+.wm-time { font-size: 24px; font-weight: 700; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.wm-addr { font-size: 12px; opacity: .92; margin-top: 2px; }
+
+/* ---------- 底部操作 ---------- */
+.camera-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 32px calc(28px + env(safe-area-inset-bottom));
+  z-index: 10;
+  background: linear-gradient(transparent, rgba(0,0,0,.55));
+}
+
+.shutter {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 4px solid #fff; background: #fff;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.25);
+  cursor: pointer; transition: transform .12s;
+}
+.shutter:active { transform: scale(.88); background: #ddd; }
+.shutter:disabled { opacity: .4; pointer-events: none; }
+
+.spacer { visibility: hidden; }
+
+/* ---------- 结果页 ---------- */
+.result-wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+#result-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+#screen-result .camera-bottom { background: var(--bg); }
+#screen-result .btn { flex: 1; }
+#screen-result .camera-bottom { gap: 12px; padding-left: 24px; padding-right: 24px; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 18%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.8); color: #fff;
+  padding: 10px 18px; border-radius: 8px; font-size: 14px;
+  z-index: 99; max-width: 80vw; text-align: center;
+  animation: toast-in .25s ease;
+}
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } }
