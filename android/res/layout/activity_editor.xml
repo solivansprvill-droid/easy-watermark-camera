@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <!-- 顶栏：取消 / 重置 / 完成 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textColor="#FFFFFF"
+            android:text="取消"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textColor="#FFFFFF"
+            android:text="重置"/>
+
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:textColor="#7C3AED"
+            android:text="完成"/>
+    </LinearLayout>
+
+    <com.victory.easywatermark.EditorView
+        android:id="@+id/editor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- 裁剪比例条 -->
+    <HorizontalScrollView
+        android:id="@+id/aspect_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:id="@+id/aspect_free"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/aspect_1_1"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/aspect_4_3"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/aspect_16_9"
+                style="@style/Chip"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 滤镜条 -->
+    <HorizontalScrollView
+        android:id="@+id/filter_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:id="@+id/filter_0"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/filter_1"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/filter_2"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/filter_3"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/filter_4"
+                style="@style/Chip"/>
+            <TextView
+                android:id="@+id/filter_5"
+                style="@style/Chip"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 遮挡条 -->
+    <LinearLayout
+        android:id="@+id/mosaic_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/pen_mosaic"
+            android:text="马赛克笔"
+            style="@style/Chip"/>
+        <TextView
+            android:id="@+id/pen_draw"
+            android:text="涂鸦笔"
+            style="@style/Chip"/>
+        <TextView
+            android:id="@+id/btn_undo"
+            android:text="撤销"
+            style="@style/Chip"/>
+        <TextView
+            android:id="@+id/btn_clear_strokes"
+            android:text="清空"
+            style="@style/Chip"/>
+    </LinearLayout>
+
+    <!-- 加字条 -->
+    <LinearLayout
+        android:id="@+id/text_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_input_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#33000000"
+            android:textColor="#FFFFFF"
+            android:text="输入文字（拖动调整位置）"/>
+    </LinearLayout>
+
+    <!-- 模式切换 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="28dp">
+
+        <Button
+            android:id="@+id/mode_crop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:background="#33000000"
+            android:textColor="#FFFFFF"
+            android:text="裁剪"/>
+
+        <Button
+            android:id="@+id/mode_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:layout_marginStart="6dp"
+            android:background="#33000000"
+            android:textColor="#FFFFFF"
+            android:text="滤镜"/>
+
+        <Button
+            android:id="@+id/mode_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="#33000000"
+            android:textColor="#FFFFFF"
+            android:text="加字"/>
+
+        <Button
+            android:id="@+id/mode_mosaic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:background="#33000000"
+            android:textColor="#FFFFFF"
+            android:text="遮挡"/>
+    </LinearLayout>
+</LinearLayout>
